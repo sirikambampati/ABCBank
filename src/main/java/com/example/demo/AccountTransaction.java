@@ -1,53 +1,43 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "AccountTransaction")
-public class AccountTransaction{
+@IdClass(value = CustomerIdentity.class)
+public class AccountTransaction {
 
     @Id
+    @NotNull
     private int transactionNo;
+    @Id
     @NotBlank
     private String accountId;
     private String transactionDate;
-    @NotBlank
-    private String transactionAmount;
+    @NotNull
+    private int transactionAmount;
     @NotBlank
     private String transactionType;
-    @NotBlank
-    private String accountBalance;
-    private String payeeId;
-    private String loanId;
-    @NotBlank
-
-
+    private float accountBalance;
+    private int payeeId;
+    private int loanId;
 
     public AccountTransaction() {
         super();
     }
 
-    public AccountTransaction(int transactionNo,String accountId, String transactionDate, String transactionType, String loanId, String payeeId) {
+    public AccountTransaction(int transactionNo, String accountId, String transactionDate, int transactionAmount, String transactionType, float accountBalance, int loanId, int payeeId) {
         super();
-        this.accountId = accountId;
         this.transactionNo = transactionNo;
+        this.accountId = accountId;
         this.loanId = loanId;
         this.payeeId = payeeId;
-        this.transactionAmount = transactionDate;
+        this.transactionAmount = transactionAmount;
         this.transactionDate = transactionDate;
         this.transactionType = transactionType;
-    }
-
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+        this.accountBalance = accountBalance;
     }
 
     public int getTransactionNo() {
@@ -58,6 +48,14 @@ public class AccountTransaction{
         this.transactionNo = transactionNo;
     }
 
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
     public String getTransactionDate() {
         return transactionDate;
     }
@@ -66,11 +64,11 @@ public class AccountTransaction{
         this.transactionDate = transactionDate;
     }
 
-    public String getTransactionAmount() {
+    public int getTransactionAmount() {
         return transactionAmount;
     }
 
-    public void setTransactionAmount(String transactionAmount) {
+    public void setTransactionAmount(int transactionAmount) {
         this.transactionAmount = transactionAmount;
     }
 
@@ -82,27 +80,27 @@ public class AccountTransaction{
         this.transactionType = transactionType;
     }
 
-    public String getLoanId() {
+    public int getLoanId() {
         return loanId;
     }
 
-    public void setLoanId(String loanId) {
+    public void setLoanId(int loanId) {
         this.loanId = loanId;
     }
 
-    public String getPayeeId() {
+    public int getPayeeId() {
         return payeeId;
     }
 
-    public void setPayeeId(String payeeId) {
+    public void setPayeeId(int payeeId) {
         this.payeeId = payeeId;
     }
 
-    public String getAccountBalance() {
+    public float getAccountBalance() {
         return accountBalance;
     }
 
-    public void setAccountBalance(String accountBalance) {
+    public void setAccountBalance(float accountBalance) {
         this.accountBalance = accountBalance;
     }
 }

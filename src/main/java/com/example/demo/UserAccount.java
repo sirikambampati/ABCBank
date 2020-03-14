@@ -13,24 +13,24 @@ public class UserAccount {
     @Id
     private String accountId;
     @NotBlank
-    private String userId;
+    private int userId;
 
 
     public UserAccount() {
         super();
     }
 
-    public UserAccount(String userId, String accountId) {
+    public UserAccount(int userId, String accountId) {
         super();
         this.accountId = accountId;
         this.userId = userId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

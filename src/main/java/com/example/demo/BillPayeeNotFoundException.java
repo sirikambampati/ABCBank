@@ -1,9 +1,9 @@
 package com.example.demo;
 
 public class BillPayeeNotFoundException extends Exception {
-    private String id;
+    private int id;
 
-    public BillPayeeNotFoundException(String id) {
+    public BillPayeeNotFoundException(int id) {
         super(String.format("Bill Payee not found: %s", id));
     }
 }

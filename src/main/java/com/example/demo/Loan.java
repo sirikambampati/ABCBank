@@ -1,18 +1,18 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Loan")
 public class Loan {
 
     @Id
-    private String loanId;
-    @NotBlank
-    private String userId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int loanId;
+    @NotNull
+    private int userId;
     @NotBlank
     private String accountId;
     @NotBlank
@@ -29,7 +29,7 @@ public class Loan {
         super();
     }
 
-    public Loan(String loanId, String userId, String accountId, String loanType, String loanAmount, String loanStatus, String loanTerm, String loanOpenDate) {
+    public Loan(int loanId, int userId, String accountId, String loanType, String loanAmount, String loanStatus, String loanTerm, String loanOpenDate) {
         super();
         this.loanId = loanId;
         this.loanAmount = loanAmount;
@@ -41,19 +41,19 @@ public class Loan {
         this.loanType = loanType;
     }
 
-    public String getLoanId() {
+    public int getLoanId() {
         return loanId;
     }
 
-    public void setLoanId(String loanId) {
+    public void setLoanId(int loanId) {
         this.loanId = loanId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

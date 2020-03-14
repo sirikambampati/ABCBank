@@ -1,8 +1,6 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +9,8 @@ import javax.validation.constraints.NotNull;
 public class User {
 
     @Id
-    private String userId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
     @NotBlank
     private String firstName;
     private String middleName;
@@ -28,7 +27,7 @@ public class User {
         super();
     }
 
-    public User(String userId, String firstName, String middleName, String lastName, String emailId, String mobileNumber, String password) {
+    public User(int userId, String firstName, String middleName, String lastName, String emailId, String mobileNumber, String password) {
         super();
         this.userId = userId;
         this.firstName = firstName;
@@ -39,11 +38,11 @@ public class User {
         this.password = password;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

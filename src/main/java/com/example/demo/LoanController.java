@@ -21,7 +21,7 @@ public class LoanController {
     }
 
     @GetMapping("/loan/{loanId}")
-    public Optional<Loan> getLoanById(@PathVariable(value = "loanId") String loanId) {
+    public Optional<Loan> getLoanById(@PathVariable(value = "loanId") int loanId) {
         return loanRepository.findById(loanId);
     }
 
@@ -31,7 +31,7 @@ public class LoanController {
     }
 
     @PutMapping("/loan/{loanId}")
-    public @Valid Loan updateLoan(@PathVariable(value = "loanId") String loanId, @Valid @RequestBody Loan loanDetails)
+    public @Valid Loan updateLoan(@PathVariable(value = "loanId") int loanId, @Valid @RequestBody Loan loanDetails)
             throws LoanNotFoundException {
 
         Loan loan = loanRepository.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
@@ -50,7 +50,7 @@ public class LoanController {
     }
 
     @DeleteMapping("/loan/{loanId}")
-    public ResponseEntity<Void> deleteLoan(@PathVariable("loanId") String loanId)
+    public ResponseEntity<Void> deleteLoan(@PathVariable("loanId") int loanId)
             throws LoanNotFoundException {
         Loan loan = loanRepository.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
         loanRepository.deleteById(loanId);

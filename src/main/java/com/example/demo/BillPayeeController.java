@@ -21,7 +21,7 @@ public class BillPayeeController {
     }
 
     @GetMapping("/billpayee/{payeeId}")
-    public Optional<BillPayee> getBillPayeeById(@PathVariable(value = "payeeId") String payeeId) {
+    public Optional<BillPayee> getBillPayeeById(@PathVariable(value = "payeeId") int payeeId) {
         return billPayeeRepository.findById(payeeId);
     }
 
@@ -31,7 +31,7 @@ public class BillPayeeController {
     }
 
     @PutMapping("/billpayee/{payeeId}")
-    public @Valid BillPayee updateBillPayee(@PathVariable(value = "payeeId") String payeeId, @Valid @RequestBody BillPayee billPay)
+    public @Valid BillPayee updateBillPayee(@PathVariable(value = "payeeId") int payeeId, @Valid @RequestBody BillPayee billPay)
             throws BillPayeeNotFoundException {
         BillPayee billPayee = billPayeeRepository.findById(payeeId).orElseThrow(() -> new BillPayeeNotFoundException(payeeId));
         billPayee.setPayeeId(billPay.getPayeeId());
@@ -44,7 +44,7 @@ public class BillPayeeController {
     }
 
     @DeleteMapping("/billpayee/{id}")
-    public ResponseEntity<Void> deleteBillPayee(@PathVariable("payeeId") String payeeId)
+    public ResponseEntity<Void> deleteBillPayee(@PathVariable("payeeId") int payeeId)
             throws BillPayeeNotFoundException {
         BillPayee billPayee = billPayeeRepository.findById(payeeId).orElseThrow(() -> new BillPayeeNotFoundException(payeeId));
         billPayeeRepository.deleteById(payeeId);

@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{userId}")
-    public Optional<User> getUserById(@PathVariable(value = "userId") String userId) {
+    public Optional<User> getUserById(@PathVariable(value = "userId") int userId) {
         return userRepository.findById(userId);
     }
 
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PutMapping("/user/{userId}")
-    public @Valid User updateUser(@PathVariable(value = "userId") String userId, @Valid @RequestBody User userDetails)
+    public @Valid User updateUser(@PathVariable(value = "userId") int userId, @Valid @RequestBody User userDetails)
             throws UserNotFoundException {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         user.setUserId(userDetails.getUserId());
@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable("userId") String userId)
+    public ResponseEntity<Void> deleteUser(@PathVariable("userId") int userId)
             throws UserNotFoundException {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         userRepository.deleteById(userId);

@@ -1,8 +1,6 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -10,9 +8,10 @@ import javax.validation.constraints.NotBlank;
 public class BillPayee {
 
     @Id
-    private String payeeId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int payeeId;
     @NotBlank
-    private String userId;
+    private int userId;
     @NotBlank
     private String payeeAccountNo;
     @NotBlank
@@ -24,7 +23,7 @@ public class BillPayee {
         super();
     }
 
-    public BillPayee(String payeeId, String userId, String payeeAccountNo, String payeePhone, String payeeAddress) {
+    public BillPayee(int payeeId, int userId, String payeeAccountNo, String payeePhone, String payeeAddress) {
         super();
         this.payeeId = payeeId;
         this.userId = userId;
@@ -33,19 +32,19 @@ public class BillPayee {
         this.payeeAddress = payeeAddress;
     }
 
-    public String getPayeeId() {
+    public int getPayeeId() {
         return payeeId;
     }
 
-    public void setPayeeId(String payeeId) {
+    public void setPayeeId(int payeeId) {
         this.payeeId = payeeId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
